@@ -1,0 +1,75 @@
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX], top = -1;
+
+void push() {
+    if (top == MAX - 1) {
+        printf("Stack is Full!\n");
+        return;
+    }
+    int val;
+    printf("Enter value to push: ");
+    scanf("%d", &val);
+    stack[++top] = val;
+}
+
+void pop() {
+    if (top == -1) {
+        printf("Stack is Empty!\n");
+        return;
+    }
+    printf("Popped element: %d\n", stack[top--]);
+}
+
+void isEmpty() {
+    if (top == -1)
+        printf("Stack is Empty\n");
+    else
+        printf("Stack is not Empty\n");
+}
+
+void isFull() {
+    if (top == MAX - 1)
+        printf("Stack is Full\n");
+    else
+        printf("Stack is not Full\n");
+}
+
+void display() {
+    if (top == -1) {
+        printf("Stack is Empty\n");
+        return;
+    }
+    printf("Stack elements are:\n");
+    for (int i = top; i >= 0; i--)
+        printf("%d ", stack[i]);
+    printf("\n");
+}
+
+void peek() {
+    if (top == -1)
+        printf("Stack is Empty\n");
+    else
+        printf("Top element: %d\n", stack[top]);
+}
+
+int main() {
+    int choice;
+    do {
+        printf("\n1.Push 2.Pop 3.isEmpty 4.isFull 5.Display 6.Peek 7.Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: isEmpty(); break;
+            case 4: isFull(); break;
+            case 5: display(); break;
+            case 6: peek(); break;
+            case 7: printf("Exiting...\n"); break;
+            default: printf("Invalid Choice\n");
+        }
+    } while (choice != 7);
+    return 0;
+}
